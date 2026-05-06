@@ -1,11 +1,15 @@
 package com.example.financial_tracker.entity;
-
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+
+import java.util.List;
 
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
 public class User {
 
@@ -26,4 +30,7 @@ public class User {
     private String password;
 
     private String job;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Transaction> transactions;
 }
